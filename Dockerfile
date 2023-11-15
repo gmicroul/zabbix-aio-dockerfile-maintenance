@@ -1,4 +1,4 @@
-# 使用最新的Ubuntu ARM64镜像作为基础镜像
+# 使用最新的Ubuntu AMD64镜像作为基础镜像
 FROM ubuntu:latest
 ENV DEBIAN_FRONTEND noninteractive
 # COPY sources.list /etc/apt/sources.list
