@@ -1,7 +1,5 @@
 # zabbix-aio-dockerfile-maintenance
-
 Afer deployed zabbix you can add url monitoring as below setps:
-
 Installation
 
     Shell commands prerequisites to install before using this template: openssl, curl, dos2unix
