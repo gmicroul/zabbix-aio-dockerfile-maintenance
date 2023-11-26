@@ -12,8 +12,8 @@ RUN apt-get update -y && apt-get install -y wget vim locales \
  && locale-gen en_US.UTF-8 \
  && update-locale
 COPY my.cnf /etc/mysql/my.cnf
-COPY zabbix_server.conf /etc/mysql/zabbix_server.conf
-COPY zabbix_agent2.conf /etc/mysql/zabbix_agent2.conf
+COPY zabbix_server.conf /etc/zabbix/zabbix_server.conf
+COPY zabbix_agent2.conf /etc/zabbix/zabbix_agent2.conf
 COPY apache.conf /etc/zabbix/apache.conf
 COPY php.ini /etc/php/8.1/apache2/php.ini
 COPY server.sql /.
