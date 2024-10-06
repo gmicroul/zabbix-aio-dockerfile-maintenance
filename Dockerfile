@@ -19,7 +19,7 @@ COPY php.ini /etc/php/8.1/apache2/php.ini
 # COPY server.sql /.
 COPY server.sql.zip /.
 # 配置MySQL
-RUN unzip server.sql.zip && rm -f server.sql.zip \
+RUN unzip /server.sql.zip && rm -f /server.sql.zip \
  && sed -i 's/bind-address/#bind-address/' /etc/mysql/mysql.conf.d/mysqld.cnf \
  && service mysql restart && mysql -e "create database zabbix character set utf8mb4 collate utf8mb4_bin;" \
  && service mysql restart && mysql -e "create user zabbix@localhost identified by 'password';" \
