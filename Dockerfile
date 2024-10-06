@@ -7,7 +7,7 @@ RUN apt-get update -y && apt-get install -y wget vim locales \
  && wget https://mirrors.tuna.tsinghua.edu.cn/zabbix/zabbix/6.4/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.4-1%2Bubuntu22.04_all.deb \
  && dpkg -i zabbix-release_6.4-1+ubuntu22.04_all.deb \ 
  && apt-get update -y \
- && apt-get install -y mysql-server php php-mysql apache2 zabbix-server-mysql zabbix-frontend-php zabbix-apache-conf zabbix-sql-scripts zabbix-agent2 \
+ && apt-get install -y unzip mysql-server php php-mysql apache2 zabbix-server-mysql zabbix-frontend-php zabbix-apache-conf zabbix-sql-scripts zabbix-agent2 \
  && usermod -d /var/lib/mysql/ mysql \
  && locale-gen en_US.UTF-8 \
  && update-locale
