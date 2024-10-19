@@ -10,9 +10,10 @@ jobs:
 
   build:
 
-    runs-on: ubuntu-latest
-
+    # runs-on: ubuntu-latest
+    runs-on: Ubuntu 22.04 by Arm Limited
+    
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build . --file Dockerfile-arm64 --tag my-image-name:$(date +%s)
