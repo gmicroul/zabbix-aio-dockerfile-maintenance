@@ -2,8 +2,12 @@ name: ci
 
 on:
   push:
+    branches: [ "main" ]
     tags:
       - v*
+  pull_request:
+    branches: [ "main" ]
+
 
 env:
   APP_NAME: zabbix-aio-dockerfile-maintenance
