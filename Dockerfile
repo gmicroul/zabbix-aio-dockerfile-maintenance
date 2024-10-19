@@ -3,10 +3,10 @@ FROM arm64v8/ubuntu:22.04
 ENV DEBIAN_FRONTEND noninteractive
 # COPY sources.list /etc/apt/sources.list
 # 安装所需的软件
-RUN echo "deb https://mirrors.aliyun.com/zabbix/zabbix/6.4/ubuntu $(lsb_release -cs) main" >> /etc/apt/sources.list
-RUN apt-get update -y && apt-get install -y wget vim locales \
+RUN apt-get update -y && apt-get install -y wget vim locales lsb_release\
  && wget https://mirrors.tuna.tsinghua.edu.cn/zabbix/zabbix/6.4/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.4-1%2Bubuntu22.04_all.deb \
  && dpkg -i zabbix-release_6.4-1+ubuntu22.04_all.deb \ 
+ && echo "deb https://mirrors.aliyun.com/zabbix/zabbix/6.4/ubuntu $(lsb_release -cs) main" >> /etc/apt/sources.list \
  && apt-get update -y \
  && apt-get install -y unzip mysql-server php php-mysql apache2 zabbix-server-mysql zabbix-frontend-php zabbix-apache-conf zabbix-sql-scripts zabbix-agent2 \
  && usermod -d /var/lib/mysql/ mysql \
