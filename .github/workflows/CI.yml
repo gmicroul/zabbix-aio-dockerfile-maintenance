@@ -1,54 +1,22 @@
-name: ci
-
-on:
-  push:
-    tags:
-      - v*
-
-env:
-  APP_NAME: squid
-  DOCKERHUB_REPO: zhonger/squid
-
 jobs:
-  docker:
+  build:
     runs-on: ubuntu-latest
     steps:
-      -
-        name: Checkout
-        uses: actions/checkout@v2
-      -
-        name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
-      -
-        name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-      -
-        name: Login to DockerHub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - 
-        name: Generate App Version
-        run: echo APP_VERSION=`git describe --tags --always` >> $GITHUB_ENV
-      -
-        name: Build and push
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          platforms: |
-            linux/386
-            linux/amd64
-            linux/arm/v5
-            linux/arm/v7
-            linux/arm64
-            linux/mips64le
-            linux/ppc64le
-            linux/s390x
-          push: true
-          build-args: |
-            APP_NAME=${{ env.APP_NAME }}
-            APP_VERSION=${{ env.APP_VERSION }}
-          tags: |
-            ${{ env.DOCKERHUB_REPO }}:latest
-            ${{ env.DOCKERHUB_REPO }}:${{ env.APP_VERSION }}
+    - uses: actions/checkout@v2
+    - uses: pguyot/arm-runner-action@v2
+      id: build_image
+      with:
+        base_image: raspios_lite:2022-04-04
+        commands: |
+            docker build . --file Dockerfile-arm64 --tag my-image-name:$(date +%s)
+    - name: Compress the release image
+      if: github.ref == 'refs/heads/releng' || startsWith(github.ref, 'refs/tags/')
+      run: |
+        mv ${{ steps.build_image.outputs.image }} my-release-image.img
+        xz -0 -T 0 -v my-release-image.img
+    - name: Upload release image
+      uses: actions/upload-artifact@v2
+      if: github.ref == 'refs/heads/releng' || startsWith(github.ref, 'refs/tags/')
+      with:
+        name: Release image
+        path: my-release-image.img.xz
