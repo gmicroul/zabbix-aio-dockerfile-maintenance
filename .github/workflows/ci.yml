@@ -6,8 +6,8 @@ on:
       - v*
 
 env:
-  APP_NAME: squid
-  DOCKERHUB_REPO: zhonger/squid
+  APP_NAME: zabbix-aio-dockerfile-maintenance
+  DOCKERHUB_REPO: microul/zabbix-aio-dockerfile-maintenance
 
 jobs:
   docker:
