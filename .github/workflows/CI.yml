@@ -33,7 +33,7 @@ jobs:
         run: echo APP_VERSION=`git describe --tags --always` >> $GITHUB_ENV
       -
         name: Build and push
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v4
         with:
           context: .
           platforms: |
