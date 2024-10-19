@@ -4,11 +4,14 @@ ENV DEBIAN_FRONTEND noninteractive
 # COPY sources.list /etc/apt/sources.list
 # 安装所需的软件
 RUN apt-get update -y && apt-get install -y wget vim locales lsb-release \
- && wget https://mirrors.tuna.tsinghua.edu.cn/zabbix/zabbix/6.4/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.4-1%2Bubuntu22.04_all.deb \
- && dpkg -i zabbix-release_6.4-1+ubuntu22.04_all.deb \ 
- && echo "deb https://mirrors.aliyun.com/zabbix/zabbix/6.4/ubuntu $(lsb_release -cs) main" >> /etc/apt/sources.list \
+# wget https://repo.zabbix.com/zabbix/6.4/ubuntu-arm64/pool/main/z/zabbix-release/zabbix-release_latest+ubuntu22.04_all.deb
+# dpkg -i zabbix-release_latest+ubuntu22.04_all.deb
+# apt update
+# apt install zabbix-agent2 zabbix-agent2-plugin-*
+ && wget https://repo.zabbix.com/zabbix/6.4/ubuntu-arm64/pool/main/z/zabbix-release/zabbix-release_latest+ubuntu22.04_all.deb \
+ && dpkg -i zabbix-release_latest+ubuntu22.04_all.deb \ 
  && apt-get update -y \
- && apt-get install -y unzip mysql-server php php-mysql apache2 zabbix-server-mysql zabbix-frontend-php zabbix-apache-conf zabbix-sql-scripts zabbix-agent2 \
+ && apt-get install -y unzip mysql-server php php-mysql apache2 zabbix-server-mysql zabbix-frontend-php zabbix-apache-conf zabbix-sql-scripts zabbix-agent2 zabbix-agent2-plugin-* \
  && usermod -d /var/lib/mysql/ mysql \
  && locale-gen en_US.UTF-8 \
  && update-locale
