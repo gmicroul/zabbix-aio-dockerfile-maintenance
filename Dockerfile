@@ -3,7 +3,7 @@ FROM arm64v8/ubuntu:24.04
 ENV DEBIAN_FRONTEND noninteractive
 # COPY sources.list /etc/apt/sources.list
 # 安装所需的软件
-RUN apt-get update -y && apt-get install -y wget vim locales lsb-release git\
+RUN apt-get update -y && apt-get install -y wget vim locales lsb-release git openssl curl dos2unix \
 # wget https://repo.zabbix.com/zabbix/7.0/ubuntu-arm64/pool/main/z/zabbix-release/zabbix-release_latest+ubuntu24.04_all.deb
 # dpkg -i zabbix-release_latest+ubuntu24.04_all.deb
 # apt update
