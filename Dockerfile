@@ -19,7 +19,7 @@ COPY my.cnf /etc/mysql/my.cnf
 COPY zabbix_server.conf /etc/zabbix/zabbix_server.conf
 COPY zabbix_agent2.conf /etc/zabbix/zabbix_agent2.conf
 COPY apache.conf /etc/zabbix/apache.conf
-COPY php.ini /etc/php/8.1/apache2/php.ini
+COPY php.ini /etc/php/8.3/apache2/php.ini
 # COPY server.sql /.
 # COPY server.sql.zip /.
 # 配置MySQL
