@@ -30,8 +30,7 @@ RUN unzip /server.sql.zip && rm -f /server.sql.zip \
  && service mysql restart && mysql -e "grant all privileges on zabbix.* to zabbix@localhost;" \
  && service mysql restart && mysql -e "set global log_bin_trust_function_creators = 1;" \
  && service mysql restart && mysql -e "FLUSH PRIVILEGES;" \
- && service mysql restart && mysql -e "use zabbix;source /server.sql;" \
- && service mysql restart && mysql -e "use zabbix;update dbversion set mandatory=7000000;FLUSH PRIVILEGES;" \
+ && service mysql restart && mysql -e "use zabbix;source /server.sql;update dbversion set mandatory=7000000;FLUSH PRIVILEGES;" \
  && cp -r /usr/share/zabbix/ /var/www/html/ 
 # 暴露Zabbix Frontend端口
 EXPOSE 80 3306 11050
