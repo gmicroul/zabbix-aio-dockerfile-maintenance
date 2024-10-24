@@ -32,7 +32,7 @@ RUN gunzip /usr/share/zabbix-sql-scripts/mysql/server.sql.gz && cp /usr/share/za
  && service mysql restart && mysql -e "set global log_bin_trust_function_creators = 1;" \
  && service mysql restart && mysql -e "FLUSH PRIVILEGES;" \
  && service mysql restart && mysql -e "use zabbix;source /server.sql;" 
- # && cp -r /usr/share/zabbix/ /var/www/html/
+ && cp -r /usr/share/zabbix/ /var/www/html/
 RUN git clone https://github.com/ugoviti/zabbix-templates.git \
   && cd zabbix-templates/ \
   && git pull \
