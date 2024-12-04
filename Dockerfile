@@ -11,7 +11,7 @@ RUN apt-get update -y && apt-get install -y wget vim locales lsb-release git ope
  && wget https://repo.zabbix.com/zabbix/7.0/ubuntu-arm64/pool/main/z/zabbix-release/zabbix-release_latest+ubuntu24.04_all.deb \
  && dpkg -i zabbix-release_latest+ubuntu24.04_all.deb \ 
  && apt-get update -y \
- && apt-get install -y unzip mysql-server php php-mysql apache2 zabbix-server-mysql zabbix-frontend-php zabbix-apache-conf zabbix-sql-scripts zabbix-agent2 zabbix-agent2-plugin-* \
+ && apt-get install -y unzip mysql-server php php-mysql apache2 zabbix-server-mysql zabbix-frontend-php zabbix-apache-conf zabbix-web-service zabbix-sql-scripts zabbix-agent2 zabbix-agent2-plugin-* \
  && usermod -d /var/lib/mysql/ mysql \
  && locale-gen en_US.UTF-8 \
  && update-locale
@@ -46,4 +46,4 @@ RUN git clone https://github.com/ugoviti/zabbix-templates.git \
 # 暴露Zabbix Frontend端口
 EXPOSE 80 3306 11050
 # 启动Apache2和Zabbix Agent
-CMD service mysql restart && service zabbix-server restart && service apache2 restart && service zabbix-agent2 restart && tail -f /dev/null
+CMD service mysql restart && service zabbix-server restart && service apache2 restart && service zabbix-agent2 restart && service zabbix-web-service restart && tail -f /dev/null
