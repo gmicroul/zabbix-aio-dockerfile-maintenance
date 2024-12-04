@@ -13,16 +13,16 @@
 # mysql -u root -ppassword zabbix < /server.sql
 
 # 启动Zabbix Server
-service zabbix-server start
+service zabbix-server restart
 
 # 启动Apache Web服务器
-service apache2 start
+service apache2 restart
 
 # 启动Zabbix Agent
-service zabbix-agent2 start
+service zabbix-agent2 restart
 
 # 启动Zabbix Web Service
-service zabbix-web-service start
+service zabbix-web-service restart
 
 # 持续运行以保持容器运行
 tail -f /dev/null
