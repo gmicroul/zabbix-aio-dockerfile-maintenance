@@ -46,10 +46,10 @@ RUN git clone https://github.com/ugoviti/zabbix-templates.git \
   && chmod 755 $ZABBIX_SCRIPTS_DIR/* \
   && cp zabbix_agent*/*.conf $ZABBIX_AGENT_DIR/ 
 # 暴露Zabbix Frontend端口
-COPY entrypoint.sh /
-RUN chmod +x /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
+#COPY entrypoint.sh /
+#RUN chmod +x /entrypoint.sh
+#ENTRYPOINT ["/entrypoint.sh"]
 EXPOSE 80 3306 11050
 # 启动Apache2和Zabbix Agent
 
-#CMD service mysql restart && service zabbix-server restart && service apache2 restart && service zabbix-agent2 restart && service zabbix-web-service restart && tail -f /dev/null
+CMD service mysql restart && service zabbix-server restart && service apache2 restart && service zabbix-agent2 restart && service zabbix-web-service restart && tail -f /dev/null
