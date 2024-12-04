@@ -1,9 +1,9 @@
 # 使用最新的Ubuntu AMD64镜像作为基础镜像
-FROM arm64v8/ubuntu:22.04
+FROM arm64v8/ubuntu:24.04
 ENV DEBIAN_FRONTEND noninteractive
 # COPY sources.list /etc/apt/sources.list
 # 安装所需的软件
-RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d 
+# RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d 
 RUN apt-get update -y && apt-get install -y wget vim locales lsb-release git openssl curl dos2unix \
 # wget https://repo.zabbix.com/zabbix/7.0/ubuntu-arm64/pool/main/z/zabbix-release/zabbix-release_latest+ubuntu24.04_all.deb
 # dpkg -i zabbix-release_latest+ubuntu24.04_all.deb
