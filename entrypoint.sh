@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 启动MySQL服务
-# service mysql start
+service mysql restart
 
 # 初始化Zabbix数据库（如果需要）
 # mysql -u root -ppassword -e "CREATE DATABASE IF NOT EXISTS zabbix CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;"
