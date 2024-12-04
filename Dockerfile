@@ -50,7 +50,7 @@ RUN git clone https://github.com/ugoviti/zabbix-templates.git \
 EXPOSE 80 3306 11050
 
 # 使用tini作为入口点
-ADD https://github.com/krallin/tini/releases/download/v0.19.0/tini /sbin/tini
+ADD https://github.com/krallin/tini/releases/download/v0.19.0/tini-arm64 /sbin/tini
 RUN chmod +x /sbin/tini
 
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
