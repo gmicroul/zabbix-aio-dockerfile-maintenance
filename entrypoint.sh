@@ -22,7 +22,8 @@ service apache2 restart
 service zabbix-agent2 restart
 
 # 启动Zabbix Web Service
-service zabbix-web-service restart
+# service zabbix-web-service restart
+zabbix_web_service -c /etc/zabbix/zabbix_web_service.conf 
 
 # 持续运行以保持容器运行
 tail -f /dev/null
