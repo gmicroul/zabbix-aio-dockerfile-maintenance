@@ -47,7 +47,7 @@ RUN git clone https://github.com/ugoviti/zabbix-templates.git \
   && cp zabbix_agent*/*.conf $ZABBIX_AGENT_DIR/ 
 # 暴露Zabbix Frontend端口
 
-EXPOSE 80 3306 11050
+EXPOSE 80 3306 10050 10051
 
 # 使用tini作为入口点
 ADD https://github.com/krallin/tini/releases/download/v0.19.0/tini-arm64 /sbin/tini
