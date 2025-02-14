@@ -1,6 +1,9 @@
 # 使用最新的Ubuntu AMD64镜像作为基础镜像
 FROM arm64v8/ubuntu:24.04
 ENV DEBIAN_FRONTEND noninteractive
+# 设置时区为东八区
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 # COPY sources.list /etc/apt/sources.list
 # 安装所需的软件
 # RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d 
