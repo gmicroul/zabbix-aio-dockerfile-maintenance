@@ -12,8 +12,8 @@ RUN apt-get update -y && apt-get install -y wget vim locales lsb-release git ope
 # dpkg -i zabbix-release_latest+ubuntu24.04_all.deb
 # apt update
 # apt install zabbix-agent2 zabbix-agent2-plugin-*
- && wget https://repo.zabbix.com/zabbix/7.0/ubuntu-arm64/pool/main/z/zabbix-release/zabbix-release_latest+ubuntu24.04_all.deb \
- && dpkg -i zabbix-release_latest+ubuntu24.04_all.deb \ 
+ && wget https://repo.zabbix.com/zabbix/7.2/release/ubuntu/pool/main/z/zabbix-release/zabbix-release_latest_7.2+ubuntu24.04_all.deb \
+ && dpkg -i zabbix-release_latest_7.2+ubuntu24.04_all.deb \ 
  && apt-get update -y \
  && apt-get install -y unzip mysql-server php php-mysql apache2 zabbix-server-mysql zabbix-frontend-php zabbix-apache-conf zabbix-web-service zabbix-sql-scripts zabbix-agent2 zabbix-agent2-plugin-* \
  && usermod -d /var/lib/mysql/ mysql \
