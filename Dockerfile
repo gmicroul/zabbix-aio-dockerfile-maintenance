@@ -26,11 +26,11 @@ COPY zabbix_web_service.conf /etc/zabbix/zabbix_web_service.conf
 COPY apache.conf /etc/zabbix/apache.conf
 COPY php.ini /etc/php/8.3/apache2/php.ini
 # COPY server.sql /. 
-COPY server.sql.zip /.
+# COPY server.sql.zip /.
 # 配置MySQL
-# RUN ls -ltrh /usr/share/zabbix-sql-scripts/mysql/server.sql.gz
-# RUN gunzip /usr/share/zabbix-sql-scripts/mysql/server.sql.gz && cp /usr/share/zabbix-sql-scripts/mysql/server.sql /. \
-RUN unzip /server.sql.zip && rm -f /server.sql.zip \
+# RUN ls -ltrh /usr/share/zabbix/sql-scripts/mysql/server.sql.gz
+RUN gunzip /usr/share/zabbix/sql-scripts/mysql/server.sql.gz && cp /usr/share/zabbix/sql-scripts/mysql/server.sql /. \
+# RUN unzip /server.sql.zip && rm -f /server.sql.zip \
  && sed -i 's/bind-address/#bind-address/' /etc/mysql/mysql.conf.d/mysqld.cnf \
  && service mysql restart && mysql -e "create database zabbix character set utf8mb4 collate utf8mb4_bin;" \
  && service mysql restart && mysql -e "create user zabbix@localhost identified by 'password';" \
