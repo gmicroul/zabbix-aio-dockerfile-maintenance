@@ -12,8 +12,8 @@ RUN apt-get update -y && apt-get install -y wget vim locales lsb-release git ope
 # dpkg -i zabbix-release_latest+ubuntu24.04_all.deb
 # apt update
 # apt install zabbix-agent2 zabbix-agent2-plugin-*
- && wget https://repo.zabbix.com/zabbix/7.2/release/ubuntu/pool/main/z/zabbix-release/zabbix-release_latest_7.2+ubuntu24.04_all.deb \
- && dpkg -i zabbix-release_latest_7.2+ubuntu24.04_all.deb \ 
+ && wget https://repo.zabbix.com/zabbix/7.0/ubuntu-arm64/pool/main/z/zabbix-release/zabbix-release_latest+ubuntu24.04_all.deb \
+ && dpkg -i zabbix-release_latest+ubuntu24.04_all.deb \ 
  && apt-get update -y \
  && apt-get install -y unzip mysql-server php php-mysql apache2 zabbix-server-mysql zabbix-frontend-php zabbix-apache-conf zabbix-web-service zabbix-sql-scripts zabbix-agent2 zabbix-agent2-plugin-* \
  && usermod -d /var/lib/mysql/ mysql \
@@ -25,11 +25,10 @@ COPY zabbix_agent2.conf /etc/zabbix/zabbix_agent2.conf
 COPY zabbix_web_service.conf /etc/zabbix/zabbix_web_service.conf
 COPY apache.conf /etc/zabbix/apache.conf
 COPY php.ini /etc/php/8.3/apache2/php.ini
-# COPY server.sql /. 
+# COPY server.sql /.
 # COPY server.sql.zip /.
 # 配置MySQL
-# RUN ls -ltrh /usr/share/zabbix/sql-scripts/mysql/server.sql.gz
-RUN gunzip /usr/share/zabbix/sql-scripts/mysql/server.sql.gz && cp /usr/share/zabbix/sql-scripts/mysql/server.sql /. \
+RUN gunzip /usr/share/zabbix-sql-scripts/mysql/server.sql.gz && cp /usr/share/zabbix-sql-scripts/mysql/server.sql /. \
 # RUN unzip /server.sql.zip && rm -f /server.sql.zip \
  && sed -i 's/bind-address/#bind-address/' /etc/mysql/mysql.conf.d/mysqld.cnf \
  && service mysql restart && mysql -e "create database zabbix character set utf8mb4 collate utf8mb4_bin;" \
@@ -51,7 +50,7 @@ RUN git clone https://github.com/ugoviti/zabbix-templates.git \
   && cp zabbix_agent*/*.conf $ZABBIX_AGENT_DIR/ 
 # 暴露Zabbix Frontend端口
 
-EXPOSE 80 3306 10050 10051 5000 10053
+EXPOSE 80 3306 10050 10051 10052 10053 5000
 
 # 使用tini作为入口点
 ADD https://github.com/krallin/tini/releases/download/v0.19.0/tini-arm64 /sbin/tini
