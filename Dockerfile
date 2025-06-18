@@ -47,8 +47,7 @@ RUN git clone https://github.com/ugoviti/zabbix-templates.git \
   && mkdir -p $ZABBIX_SCRIPTS_DIR $ZABBIX_AGENT_DIR \
   && cp scripts/* $ZABBIX_SCRIPTS_DIR/ \
   && chmod 755 $ZABBIX_SCRIPTS_DIR/* \
-  && cp zabbix_agent*/*.conf $ZABBIX_AGENT_DIR/ \
-  && curl -fsSL https://ollama.com/install.sh | sh
+  && cp zabbix_agent*/*.conf $ZABBIX_AGENT_DIR/ 
 # 暴露Zabbix Frontend端口
 
 EXPOSE 80 3306 10050 10051 10052 10053 5000 11434
