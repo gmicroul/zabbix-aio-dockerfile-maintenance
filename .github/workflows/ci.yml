@@ -25,7 +25,7 @@ jobs:
           remove-dotnet: 'true'
           remove-haskell: 'true'
           remove-android: 'true'
-          remove-docker-images: 'false'
+          remove-docker-images: 'true'
 
       - name: Free Disk Space (Ubuntu)
         uses: jlumbroso/free-disk-space@main
